@@ -1,0 +1,109 @@
+/* =========================================================
+   DIPLOMACY: SVG MAP STYLES & ANIMATIONS
+   Tactical Arrows, Unit Tokens, Supply Center Badges
+   ========================================================= */
+
+/* Provinces */
+.province {
+  transition: fill 0.25s ease, stroke 0.2s ease, filter 0.2s ease;
+  cursor: pointer;
+}
+
+.province.sea {
+  fill: #14253d;
+  stroke: #1e3a5f;
+  stroke-width: 1.5;
+}
+
+.province.sea:hover {
+  fill: #1a3354;
+  stroke: #38bdf8;
+}
+
+.province.land {
+  fill: #222d3d;
+  stroke: #475569;
+  stroke-width: 1.5;
+}
+
+.province.land:hover {
+  fill: #2e3e54;
+  stroke: #94a3b8;
+}
+
+.province.highlighted {
+  stroke: #38bdf8 !important;
+  stroke-width: 3.5 !important;
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.6));
+  animation: pulseHighlight 1.5s infinite alternate;
+}
+
+@keyframes pulseHighlight {
+  from { stroke-opacity: 0.7; }
+  to { stroke-opacity: 1; }
+}
+
+/* Labels */
+.prov-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  fill: #cbd5e1;
+  pointer-events: none;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9), 0 0 5px rgba(0, 0, 0, 0.8);
+}
+
+.prov-label.sea {
+  fill: #93c5fd;
+  font-style: italic;
+  font-size: 10px;
+}
+
+/* Supply Center Markers */
+.sc-marker {
+  pointer-events: none;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.7));
+  transition: transform 0.2s ease;
+}
+
+/* Unit Tokens */
+.unit-token {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.unit-token:hover {
+  transform: scale(1.18);
+}
+
+.unit-token.selected circle {
+  stroke: #38bdf8;
+  stroke-width: 3.5;
+  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.8));
+  animation: selectedPulse 1.2s infinite alternate;
+}
+
+@keyframes selectedPulse {
+  from { stroke-width: 3; }
+  to { stroke-width: 4.5; }
+}
+
+.dislodged-unit-token {
+  animation: pulseDislodged 1s infinite alternate;
+  cursor: pointer;
+}
+
+@keyframes pulseDislodged {
+  from { transform: scale(1); filter: drop-shadow(0 0 4px #ef4444); }
+  to { transform: scale(1.2); filter: drop-shadow(0 0 10px #dc2626); }
+}
+
+/* Tactical Arrows */
+.tactical-arrow {
+  animation: dashDraw 0.6s ease-out;
+}
+
+@keyframes dashDraw {
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
+}
